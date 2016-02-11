@@ -1,4 +1,5 @@
 var FB = require('facebook-node');
+var fs = require('fs');
 
 var accessToken = fs.readFileSync('token.txt').toString();
 
