@@ -11,8 +11,8 @@ var fb = require('./facebook.js');
 	}
 }, 60 * 1000);*/
 
-var loader = require('./dic-loader.js');
-var query = require('./rant-query.js');
+var loader = require('./rant/dic-loader.js');
+var query = require('./rant/rant-query.js');
 query.setDic(loader.loadDic('Rantionary/celebrities.dic'));
 query.filterLines(['jewish']);
 for(var i = 0; i < 10; i++){
