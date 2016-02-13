@@ -20,6 +20,10 @@ exports.loadDictionary = function(dir){
 	}
 }
 
+exports.clearDicts = function(){
+	dicts = [];
+}
+
 exports.rant = function(rantScript){
 	script = rantScript;
 	matchCarrierMap = {};
