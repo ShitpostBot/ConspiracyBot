@@ -10,17 +10,21 @@ exports.filterLines = function(classes){
 	activeLines = [];
 	for(var i = 0; i < dic.content.length; i++){
 		var line = dic.content[i];
-		var matches = false;
+		var matches = true;
+
 		for(var c = 0; c < classes.length; c++){
 			var cls = classes[c];
+			var contains = false;
 			for(var l = 0; l < line.classes.length; l++){
 				if(line.classes[l] == cls){
-					matches = true;
+					contains = true;
 					break;
 				}
-				if(matches) break;
 			}
-			if(matches) break;
+			if(!contains){
+				matches = false;
+				break;
+			}
 		}
 
 		if(matches){

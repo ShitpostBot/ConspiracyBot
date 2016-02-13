@@ -14,7 +14,7 @@ var fb = require('./facebook.js');
 var loader = require('./rant/dic-loader.js');
 var query = require('./rant/rant-query.js');
 query.setDic(loader.loadDic('Rantionary/celebrities.dic'));
-query.filterLines(['jewish']);
+query.filterLines(['scientologist']);
 for(var i = 0; i < 10; i++){
 	console.log(query.getRandomLine().full);
 }
