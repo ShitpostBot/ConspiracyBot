@@ -13,6 +13,7 @@ function loadText(dicName){
 	loadedDic = fs.readFileSync(dicName).toString();
 }
 
+//loads all the content into the separate variables line by line
 function getContent(){
 	lines = loadedDic.replace(/(\r|\r\n|\n\r)/g, '\n').split('\n');
 	for(var i = 0; i < lines.length; i++){
@@ -20,6 +21,7 @@ function getContent(){
 	}
 }
 
+//processes each individual line
 function processLine(line, lineNo){
 	if(line.startsWith('>')){
 		var obj = {};
