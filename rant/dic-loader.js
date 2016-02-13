@@ -66,7 +66,7 @@ function processLine(line, lineNo){
 
 function getObject(){
 	var obj = {
-		'name': attributes.name,
+		'name': attributes.name[0],
 		'subs': attributes.subs
 	}
 	obj['content'] = content;
@@ -76,5 +76,14 @@ function getObject(){
 exports.loadDic = function(file){
 	loadText(file);
 	getContent();
-	return getObject();
+	var obj = getObject();
+	
+	loadedDic = '';
+	lines = [];
+	attributes = {};
+	content = [];
+	lastContentIndex = -1;
+	activeClasses = [];
+
+	return obj;
 }

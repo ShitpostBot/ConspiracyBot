@@ -13,8 +13,8 @@ var fb = require('./facebook.js');
 
 var loader = require('./rant/dic-loader.js');
 var query = require('./rant/rant-query.js');
-query.setDic(loader.loadDic('Rantionary/celebrities.dic'));
-query.filterLines(['scientologist']);
-for(var i = 0; i < 10; i++){
-	console.log(query.getRandomLine().full);
-}
+var compiler = require('./rant/rant-compiler.js');
+
+compiler.loadDictionary('Rantionary');
+
+console.log(compiler.rant("<celeb-singer-songwriter> is a singer songwriter. Their favorite country is <country-europe>"));
