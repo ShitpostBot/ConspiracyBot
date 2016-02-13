@@ -24,8 +24,10 @@ exports.rant = function(rantScript){
 	script = rantScript;
 	matchCarrierMap = {};
 	matchAssocMap = {};
-	while(hasToken()){
+	var limit = 1000;
+	while(hasToken() && limit > 0){
 		processToken();
+		limit--;
 	}
 	return script;
 }
@@ -36,7 +38,7 @@ function hasToken(){
 
 function processToken(){
 	var token = script.match(tokenRegex)[0].replace(/(<|>)/g, '');
-	if(script.includes('::')){
+	if(token.includes('::')){
 		//carriers
 		//match
 		if(token.includes('::=')){
@@ -69,7 +71,7 @@ function processToken(){
 }
 
 function replaceToken(token){
-	script = script.replace(tokenRegex, compileToken(token)[getSub(token)]);
+	script = script.replace(tokenRegex, compileToken(token)[getSub(token, getDict(getDictName(token)))]);
 }
 
 function compileToken(token){
