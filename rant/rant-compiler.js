@@ -120,8 +120,9 @@ function getDict(dictName){
 
 function formatAn(str){
 	var as = str.match(/ a (a|e|i|o|u)/g);
+	if(as == null) return str;
 	for (var i = 0; i < as.length; i++) {
-		str = str.replace(as, as.replace(' a ', ' an '));
+		str = str.replace(as[i], as[i].replace(' a ', ' an '));
 	}
 	return str;
 }
