@@ -27,12 +27,9 @@ function processLine(line, lineNo){
 		var obj = {};
 		lastContentIndex++;
 		var subs = line.replace(/>>? /, '').split('/');
+		if(line.startsWith('>>')) subs = formatSubs(subs);
 		for(var i = 0; i < subs.length; i++){
-			if(line.startsWith('>>')){
-				obj[attributes.subs[i]] = i == 0 ? subs[i] : subs[0]+subs[i];
-			} else{
-				obj[attributes.subs[i]] = subs[i];
-			}
+			obj[attributes.subs[i]] = subs[i];
 		}
 		obj.classes = activeClasses.slice();
 		content[lastContentIndex] = obj;
@@ -75,6 +72,19 @@ function getObject(){
 	}
 	obj['content'] = content;
 	return obj;
+}
+
+function formatSubs(subs){
+	var originalWord = subs[0];
+	for (var i = 1; i < subs.length; i++) {
+		var subCount = subs[i].match(/-*/)[0].length;
+		var extraLetters = subs[i].replace(/-*/, '');
+		var mainWord = originalWord.substring(0, originalWord.length - subCount);
+		//console.log(originalWord + ' => ' + mainWord+'-'+extraLetters + ' (length - '+subCount+')');
+		subs[i] = mainWord + extraLetters;
+		//console.log(subs[i]);
+	}
+	return subs;
 }
 
 exports.loadDic = function(file){
