@@ -17,4 +17,6 @@ var compiler = require('./rant/rant-compiler.js');
 
 compiler.loadDictionary('Rantionary');
 
-console.log(compiler.rant("<celeb-singer-songwriter> is a singer songwriter. Their favorite country is <country-europe>"));
+for (var i = 0; i < 10; i++) {
+	console.log(compiler.rant("I like <name::@a>. <pron.nom::@a>'s pretty cool."));
+}

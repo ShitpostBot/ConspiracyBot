@@ -26,9 +26,13 @@ function processLine(line, lineNo){
 	if(line.startsWith('>')){
 		var obj = {};
 		lastContentIndex++;
-		var subs = line.replace('> ', '').split('/');
+		var subs = line.replace(/>>? /, '').split('/');
 		for(var i = 0; i < subs.length; i++){
-			obj[attributes.subs[i]] = subs[i];
+			if(line.startsWith('>>')){
+				obj[attributes.subs[i]] = i == 0 ? subs[i] : subs[0]+subs[i];
+			} else{
+				obj[attributes.subs[i]] = subs[i];
+			}
 		}
 		obj.classes = activeClasses.slice();
 		content[lastContentIndex] = obj;

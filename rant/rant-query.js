@@ -3,7 +3,7 @@ var activeLines;
 
 exports.setDic = function(dict){
 	dic = dict;
-	activeLines = dic.content;
+	activeLines = dict.content;
 }
 
 exports.filterLines = function(classes){
@@ -27,6 +27,28 @@ exports.filterLines = function(classes){
 			}
 		}
 
+		if(matches){
+			activeLines.push(line);
+		}
+	}
+}
+
+exports.filterLinesOr = function(classes){
+	activeLines = [];
+	for(var i = 0; i < dic.content.length; i++){
+		var line = dic.content[i];
+		var matches = false;
+		for(var c = 0; c < classes.length; c++){
+			var cls = classes[c];
+			for(var l = 0; l < line.classes.length; l++){
+				if(line.classes[l] == cls){
+					matches = true;
+					break;
+				}
+				if(matches) break;
+			}
+			if(matches) break;
+		}
 		if(matches){
 			activeLines.push(line);
 		}
