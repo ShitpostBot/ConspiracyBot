@@ -11,8 +11,6 @@ var fb = require('./facebook.js');
 	}
 }, 60 * 1000);*/
 
-var loader = require('./rant/dic-loader.js');
-var query = require('./rant/rant-query.js');
 var compiler = require('./rant/rant-compiler.js');
 
 compiler.loadDictionary('Rantionary');
