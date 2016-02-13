@@ -29,7 +29,7 @@ exports.rant = function(rantScript){
 		processToken();
 		limit--;
 	}
-	return script;
+	return formatAn(script);
 }
 
 function hasToken(){
@@ -116,4 +116,12 @@ function getDict(dictName){
 		}
 	}
 	return dict;
+}
+
+function formatAn(str){
+	var as = str.match(/ a (a|e|i|o|u)/g);
+	for (var i = 0; i < as.length; i++) {
+		str = str.replace(as, as.replace(' a ', ' an '));
+	}
+	return str;
 }
